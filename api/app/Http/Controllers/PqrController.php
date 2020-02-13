@@ -29,8 +29,10 @@ class PqrController extends Controller
             'surname' => 'required|max:255',
             'in_type' => 'required|max:255',
             'in_code' => 'required|numeric',
+            'problem_id'=> 'required|numeric',
             'address' => 'required|max:255',
             'issue' => 'required',
+            'phone'=> 'required|numeric',
             'lat' => 'required|numeric',
             'long' => 'required|numeric'
         ]);
