@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::resource('api','PqrController');
+Route::resource('problems','Problem_listController');

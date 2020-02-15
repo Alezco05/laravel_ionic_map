@@ -13,7 +13,7 @@ class CreateProblemsListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('problems_list', function (Blueprint $table) {
+        Schema::create('problem_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('problem');
         });
@@ -26,6 +26,6 @@ class CreateProblemsListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('problems_list');
+        Schema::dropIfExists('problems_lists');
     }
 }

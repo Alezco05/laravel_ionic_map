@@ -19,8 +19,7 @@ export class Tab2Page{
     style: 'mapbox://styles/mapbox/outdoors-v11',
     center: [-74.810913, 10.985246], // LNG, LAT
     zoom: 14 // starting zoom
-    });
-     
+    }); 
     // Add zoom and rotation controls to the map.
     this.mapa.addControl(new Mapboxgl.NavigationControl());
     this.crearMarcador(-74.810913,10.985246);

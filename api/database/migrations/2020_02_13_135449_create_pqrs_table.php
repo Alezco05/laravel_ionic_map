@@ -22,7 +22,7 @@ class CreatePqrsTable extends Migration
             $table->integer('in_code');
             //Llave Foranea
             $table->bigInteger('problem_id')->unsigned();         
-            $table->foreign('problem_id')->references('id')->on('problems_list');
+            $table->foreign('problem_id')->references('id')->on('problem_lists');
             $table->string('address');
             $table->string('issue',250); 
             $table->integer('phone');
