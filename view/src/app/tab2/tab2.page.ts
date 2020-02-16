@@ -6,30 +6,39 @@ import * as Mapboxgl from 'mapbox-gl';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page{
-
+export class Tab2Page {
   constructor() {}
   title = 'view';
   mapa: Mapboxgl.Map;
-  ionViewDidEnter() { this.createMap(); }
-  createMap(){
+  ionViewDidEnter() {
+    this.createMap();
+  }
+  createMap() {
     (Mapboxgl as any).accessToken = environment.mapboxKey;
     this.mapa = new Mapboxgl.Map({
-    container: 'mapa', // container id
-    style: 'mapbox://styles/mapbox/outdoors-v11',
-    center: [-74.810913, 10.985246], // LNG, LAT
-    zoom: 14 // starting zoom
-    }); 
+      container: 'mapa', // container id
+      style: 'mapbox://styles/mapbox/outdoors-v11',
+      center: [-74.810913, 10.985246], // LNG, LAT
+      zoom: 14 // starting zoom
+    });
     // Add zoom and rotation controls to the map.
     this.mapa.addControl(new Mapboxgl.NavigationControl());
-    this.crearMarcador(-74.810913,10.985246);
+    const geolocate = new   Mapboxgl.GeolocateControl();
+    this.mapa.addControl(geolocate);
+    geolocate.on('geolocate', (e)  => {
+      const lon = e.coords.longitude;
+      const lat = e.coords.latitude;
+      const position = [lon, lat];
+      this.crearMarcador(lon, lat);
+      console.log(position);
+    });
   }
-   crearMarcador(lng: number, lat: number){
+  crearMarcador(lng: number, lat: number) {
     const marker = new Mapboxgl.Marker({
       draggable: true
-      })
+    })
       .setLngLat([lng, lat])
       .addTo(this.mapa);
-      marker.on('dragend', () => console.log(marker.getLngLat()));
+    marker.on('dragend', () => console.log(marker.getLngLat()));
   }
 }

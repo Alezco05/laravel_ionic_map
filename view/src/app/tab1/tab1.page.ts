@@ -11,7 +11,7 @@ import { ProblemList } from '../interfaces/problem-list';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit{
+export class Tab1Page implements OnInit {
   form: FormGroup;
   problems: ProblemList[] = [];
   constructor(private pqrService: PqrService, private formBuilder: FormBuilder) {}
@@ -36,7 +36,7 @@ export class Tab1Page implements OnInit{
       long: ['', Validators.required]
     });
   }
-  click(){
+  click() {
     const data = {
       name: this.form.value.name,
       surname: this.form.value.surname,
