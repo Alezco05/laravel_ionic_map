@@ -5,6 +5,7 @@ import * as Mapboxgl from 'mapbox-gl';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProblemList } from '../interfaces/problem-list';
+import { Neighbors } from '../interfaces/neighbors';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -13,9 +14,10 @@ import { ProblemList } from '../interfaces/problem-list';
 export class Tab1Page implements OnInit {
   form: FormGroup;
   problems: ProblemList[] = [];
+  neighbors: Neighbors[] = [];
   mapa: Mapboxgl.Map;
-  lat: number;
-  long: number;
+  lat =  10.985246;
+  long = -74.810913;
   marker;
   constructor(
     private pqrService: PqrService,
@@ -24,7 +26,11 @@ export class Tab1Page implements OnInit {
   ) {}
   ngOnInit() {
     this.pqrService.getProblem_list().subscribe(
-      resp => (this.problems = resp),
+      resp => this.problems = resp,
+      err => console.log(err)
+    );
+    this.pqrService.getNeighbor_list().subscribe(
+      resp => this.neighbors = resp,
       err => console.log(err)
     );
     this.makeForm();
@@ -40,6 +46,7 @@ export class Tab1Page implements OnInit {
       in_type: ['', Validators.required],
       in_code: ['', Validators.required],
       problem_id: ['', Validators.required],
+      neighbor_id: ['', Validators.required],
       address: ['', Validators.required],
       issue: ['', Validators.required],
       phone: [
@@ -53,14 +60,13 @@ export class Tab1Page implements OnInit {
     });
   }
   click() {
-    this.form.reset();
-    this.router.navigate(['tabs/tab2']);
     const data = {
       name: this.form.value.name,
       surname: this.form.value.surname,
       in_type: this.form.value.in_type,
       in_code: this.form.value.in_code,
       problem_id: this.form.value.problem_id,
+      neighbor_id: this.form.value.neighbor_id,
       address: this.form.value.address,
       issue: this.form.value.issue,
       phone: this.form.value.phone,

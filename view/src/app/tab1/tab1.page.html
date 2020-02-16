@@ -56,6 +56,19 @@
         </ion-select>
       </ion-item>
       <ion-item>
+        <ion-label position="floating">Tipo de problema</ion-label>
+        <ion-select
+          placeholder="Seleccione el Barrio"
+          formControlName="neighbor_id"
+        >
+          <ion-select-option
+            *ngFor="let neighbor of neighbors"
+            [value]="neighbor.id"
+            >{{neighbor.name}}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+      <ion-item>
         <ion-label position="floating">Dirrecion</ion-label>
         <ion-input
           placeholder="Digite la Dirrecion"

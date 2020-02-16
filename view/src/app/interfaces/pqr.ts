@@ -5,7 +5,7 @@ export interface Pqr {
     'in_type': string;
     'in_code': string;
     'problem_id': number;
-    'neighbor':string;
+    'neighbor_id': string;
     'address': string;
     'issue': string;
     'phone': number;

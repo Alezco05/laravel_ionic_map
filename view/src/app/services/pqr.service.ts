@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 // Models
 import {Pqr} from '../interfaces/pqr';
 import {ProblemList} from '../interfaces/problem-list';
+import {Neighbors} from '../interfaces/neighbors';
 // Http
 import {HttpClient} from '@angular/common/http';
 @Injectable({
@@ -15,6 +16,9 @@ export class PqrService {
   }
   getProblem_list() {
     return this.http.get<ProblemList[]>('http://localhost:8000/problems');
+  }
+  getNeighbor_list() {
+    return this.http.get<Neighbors[]>('http://localhost:8000/neighbors');
   }
   createPqr(data: Pqr) {
     return this.http.post('http://localhost:8000/api', data);
