@@ -21,7 +21,6 @@ export class Tab2Page {
         this.createMap(this.pqrs);
       }
     );
-    console.log(this.pqrs);
   }
   createMap(pqrs: Pqr[]) {
     (Mapboxgl as any).accessToken = environment.mapboxKey;
@@ -35,17 +34,17 @@ export class Tab2Page {
     this.mapa.addControl(new Mapboxgl.NavigationControl());
     const geolocate = new   Mapboxgl.GeolocateControl();
     this.mapa.addControl(geolocate);
-    geolocate.on('geolocate', (e,pqrs)  => {
+    geolocate.on('geolocate', (e: { coords: { longitude: number; latitude: number; }; })  => {
       const lon = e.coords.longitude;
       const lat = e.coords.latitude;
-      const position = [lon, lat];
       this.crearMarcador(lon, lat);
     });
-    if(pqrs.length > 0){
+    if (pqrs.length > 0) {
       pqrs.forEach(pqr => this.crearMarcador(pqr.long, pqr.lat));
     }
   }
   crearMarcador(lng: number, lat: number) {
+    console.log(lng, lat)
     const marker = new Mapboxgl.Marker({
       draggable: true,
       color: 'red'

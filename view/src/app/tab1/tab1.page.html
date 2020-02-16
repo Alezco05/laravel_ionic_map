@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Formulario
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -44,9 +44,16 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Tipo de problema</ion-label>
-        <ion-select placeholder="Seleccione el Tipo de Problema" formControlName="problem_id">
-        <ion-select-option *ngFor="let problem of problems" [value]="problem.id">{{problem.problem}}</ion-select-option>
-         </ion-select>
+        <ion-select
+          placeholder="Seleccione el Tipo de Problema"
+          formControlName="problem_id"
+        >
+          <ion-select-option
+            *ngFor="let problem of problems"
+            [value]="problem.id"
+            >{{problem.problem}}</ion-select-option
+          >
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Dirrecion</ion-label>
@@ -73,23 +80,9 @@
         ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Latitud</ion-label>
-        <ion-input
-          placeholder="Digite su Nombre"
-          formControlName="lat"
-          required
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Longitud</ion-label>
-        <ion-input
-          placeholder="Digite su Nombre"
-          formControlName="long"
-          required
-        ></ion-input>
+        <div id="mapa2"></div>
       </ion-item>
     </ion-list>
-    <ion-button expand="full" (click)="click()">Enviar</ion-button
-    >
+    <ion-button expand="full" (click)="click()">Enviar</ion-button>
   </form>
 </ion-content>
