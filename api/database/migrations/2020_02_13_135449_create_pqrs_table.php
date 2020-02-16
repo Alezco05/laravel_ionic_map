@@ -19,10 +19,12 @@ class CreatePqrsTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('in_type');
-            $table->integer('in_code');
+            $table->string('in_code');
             //Llave Foranea
             $table->bigInteger('problem_id')->unsigned();         
             $table->foreign('problem_id')->references('id')->on('problem_lists');
+            $table->bigInteger('neighbor_id')->unsigned();         
+            $table->foreign('neighbor_id')->references('id')->on('neighbors');
             $table->string('address');
             $table->string('issue',250); 
             $table->integer('phone');

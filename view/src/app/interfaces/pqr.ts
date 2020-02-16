@@ -3,8 +3,9 @@ export interface Pqr {
     'name': string;
     'surname': string;
     'in_type': string;
-    'in_code': number;
+    'in_code': string;
     'problem_id': number;
+    'neighbor':string;
     'address': string;
     'issue': string;
     'phone': number;

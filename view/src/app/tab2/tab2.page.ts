@@ -44,7 +44,6 @@ export class Tab2Page {
     }
   }
   crearMarcador(lng: number, lat: number) {
-    console.log(lng, lat)
     const marker = new Mapboxgl.Marker({
       draggable: true,
       color: 'red'
