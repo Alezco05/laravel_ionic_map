@@ -7,45 +7,58 @@
 </ion-header>
 
 <ion-content>
-  <div id="formulario">
-    <form>
-      <ion-item>
-      <ion-label position="floating">Barrios</ion-label>
-      <ion-select
-        placeholder="Seleccione el Barrio"
-        (ngModelChange)="ordenarBarrios($event)" name="barrio" [(ngModel)]="ordenarOption"
-      >
-        <ion-select-option
-        *ngFor="let option of options" value="{{option.neighbor_id}}"
-          >{{option.neighbor}}</ion-select-option
-        >
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Tipo de Infraestructura</ion-label>
-      <ion-select
-        placeholder="Seleccione el Barrio"
-        (ngModelChange)="ordenarBarrios($event)" name="infraestructura" [(ngModel)]="ordenarOption"
-      >
-        <ion-select-option
-        *ngFor="let option of options" value="{{option.infrastructure_id}}"
-          >{{option.infrastructure}}</ion-select-option
-        >
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Tipo de problema</ion-label>
-      <ion-select
-        placeholder="Seleccione el Barrio"
-        (ngModelChange)="ordenarBarrios($event)" name="problema" [(ngModel)]="ordenarOption"
-      >
-        <ion-select-option
-        *ngFor="let option of options" value="{{option.problem_id}}"
-          >{{option.problem}}</ion-select-option
-        >
-      </ion-select>
-    </ion-item>
-    </form>
-  </div>
+  <form  (ngSubmit)="click($event)">
+    <div id="formulario">
+      <div>
+        <ion-item>
+          <ion-label position="floating">Barrios</ion-label>
+          <ion-select
+            placeholder="Seleccione el Barrio"
+            name="barrio"
+            [(ngModel)]="barrio"
+          >
+            <ion-select-option
+              *ngFor="let option of options"
+              value="{{option.neighbor_id}}"
+              >{{option.neighbor}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label position="floating">Tipo de Infraestructura</ion-label>
+          <ion-select
+            placeholder="Seleccione Infraestructura"
+            name="infraestructura"
+            [(ngModel)]="infraestructura"
+          >
+            <ion-select-option
+              *ngFor="let option of options"
+              value="{{option.infrastructure_id}}"
+              >{{option.infrastructure}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </div>
+      <div>
+        <ion-item>
+          <ion-label position="floating">Tipo de Problema</ion-label>
+          <ion-select
+            placeholder="Seleccione el Problema"
+            name="problema"
+            [(ngModel)]="problema"
+          >
+            <ion-select-option
+              *ngFor="let option of options"
+              value="{{option.problem_id}}"
+              >{{option.problem}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </div>
+      <div class="box"><ion-button type="submit">Enviar</ion-button></div>
+    </div>
+  </form>
   <div id="mapa"></div>
 </ion-content>

@@ -14,7 +14,9 @@ export class Tab2Page {
   pqrs: Pqr[] = [];
   mapa: Mapboxgl.Map;
   options: any[] = [];
-  ordenarOption: string;
+  barrio: number = 0;
+  infraestructura: number = 0;
+  problema: number = 0;
   marker: Mapboxgl.Marker;
   currentMarkers = [];
   ionViewDidEnter() {
@@ -69,6 +71,30 @@ export class Tab2Page {
     if (this.pqrs.length > 0) {
       this.pqrs.forEach(pqr => {
         if (pqr.neighbor_id == e) {
+          this.crearMarcador(pqr.issue, pqr.long, pqr.lat);
+        }
+      });
+    }
+  }
+  click(e){
+    if(this.barrio === 0 || this.infraestructura === 0 || this.problema === 0){
+      alert('Formulario Invalido');
+      return;
+    }
+    if (this.currentMarkers !== null) {
+      for (let i = this.currentMarkers.length - 1; i >= 0; i--) {
+        this.currentMarkers[i].remove();
+      }
+    }
+    console.log("Barrio",this.barrio)
+    
+    console.log("Infra",this.infraestructura)
+    
+    console.log("Problem",this.problema)
+    if (this.pqrs.length > 0) {
+      this.pqrs.forEach(pqr => {
+        console.log(pqr);
+        if (pqr.neighbor_id == this.barrio && pqr.infrastructure_id == this.infraestructura && pqr.problem_id == this.problema) {
           this.crearMarcador(pqr.issue, pqr.long, pqr.lat);
         }
       });
