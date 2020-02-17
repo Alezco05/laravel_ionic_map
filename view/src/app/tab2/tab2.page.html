@@ -13,11 +13,11 @@
       <ion-label position="floating">Barrios</ion-label>
       <ion-select
         placeholder="Seleccione el Barrio"
-        (ngModelChange)="ordenarBarrios()" name="ordenar" [(ngModel)]="ordenarOption"
+        (ngModelChange)="ordenarBarrios($event)" name="ordenar" [(ngModel)]="ordenarOption"
       >
         <ion-select-option
-        *ngFor="let option of options" value="{{option}}"
-          >{{option}}</ion-select-option
+        *ngFor="let option of options" value="{{option.neighbor_id}}"
+          >{{option.name}}</ion-select-option
         >
       </ion-select>
     </ion-item>

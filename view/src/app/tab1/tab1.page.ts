@@ -73,6 +73,7 @@ export class Tab1Page implements OnInit {
       lat: this.lat,
       long: this.long
     };
+    console.log(data);
     this.pqrService.createPqr(data).subscribe(
       resp => {
         this.router.navigate(['tabs/tab2']);

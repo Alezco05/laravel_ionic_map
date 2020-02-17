@@ -16,7 +16,7 @@ export class Tab2Page {
   options: string[] = [];
   ordenarOption: string;
   marker: Mapboxgl.Marker;
-  currentMarkers=[];
+  currentMarkers = [];
   ionViewDidEnter() {
     this.pqrService.getPqrs().subscribe(resp => {
       this.pqrs = resp;
@@ -30,7 +30,7 @@ export class Tab2Page {
   }
   fillOptions(resps) {
     resps.forEach(resp => {
-      this.options.push(resp.name);
+      this.options.push(resp);
     });
   }
 
@@ -67,13 +67,20 @@ export class Tab2Page {
       .setLngLat([lng, lat])
       .addTo(this.mapa);
     this.currentMarkers.push(this.marker);
-      }
+  }
   // Filtrar Barrios
-  ordenarBarrios() {
+  ordenarBarrios(e) {
     if (this.currentMarkers !== null) {
       for (let i = this.currentMarkers.length - 1; i >= 0; i--) {
         this.currentMarkers[i].remove();
       }
-  }
+    }
+    if (this.pqrs.length > 0) {
+      this.pqrs.forEach(pqr => {
+         if(pqr.neighbor_id == e){
+          this.crearMarcador(pqr.long, pqr.lat);
+         }
+      });
+    }
   }
 }

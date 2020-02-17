@@ -28,7 +28,7 @@ class PqrController extends Controller
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
             'in_type' => 'required|max:255',
-            'in_code' => 'required|numeric',
+            'in_code' => 'required',
             'problem_id'=> 'required|numeric',
             'neighbor_id'=> 'required|numeric',
             'address' => 'required|max:255',

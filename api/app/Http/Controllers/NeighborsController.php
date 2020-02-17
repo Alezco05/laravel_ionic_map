@@ -85,9 +85,9 @@ class NeighborsController extends Controller
 
     public function getNames(){
         $neighbors = DB::table('pqrs')
-        ->select('neighbors.name')
+        ->select('neighbors.name', 'pqrs.neighbor_id')
         ->join('neighbors','pqrs.neighbor_id','=','neighbors.id')
-        ->groupBy('neighbors.name')
+        ->groupBy('neighbors.name','pqrs.neighbor_id')
         ->get();
         return $neighbors;
     }
