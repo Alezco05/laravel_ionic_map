@@ -13,11 +13,35 @@
       <ion-label position="floating">Barrios</ion-label>
       <ion-select
         placeholder="Seleccione el Barrio"
-        (ngModelChange)="ordenarBarrios($event)" name="ordenar" [(ngModel)]="ordenarOption"
+        (ngModelChange)="ordenarBarrios($event)" name="barrio" [(ngModel)]="ordenarOption"
       >
         <ion-select-option
         *ngFor="let option of options" value="{{option.neighbor_id}}"
-          >{{option.name}}</ion-select-option
+          >{{option.neighbor}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tipo de Infraestructura</ion-label>
+      <ion-select
+        placeholder="Seleccione el Barrio"
+        (ngModelChange)="ordenarBarrios($event)" name="infraestructura" [(ngModel)]="ordenarOption"
+      >
+        <ion-select-option
+        *ngFor="let option of options" value="{{option.infrastructure_id}}"
+          >{{option.infrastructure}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Tipo de problema</ion-label>
+      <ion-select
+        placeholder="Seleccione el Barrio"
+        (ngModelChange)="ordenarBarrios($event)" name="problema" [(ngModel)]="ordenarOption"
+      >
+        <ion-select-option
+        *ngFor="let option of options" value="{{option.problem_id}}"
+          >{{option.problem}}</ion-select-option
         >
       </ion-select>
     </ion-item>
