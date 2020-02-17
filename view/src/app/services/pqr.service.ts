@@ -20,6 +20,9 @@ export class PqrService {
   getNeighbor_list() {
     return this.http.get<Neighbors[]>('http://localhost:8000/neighbors');
   }
+  getPqrs_neighbor() {
+    return this.http.get<Neighbors[]>('http://localhost:8000/neighbors_list');
+  }
   createPqr(data: Pqr) {
     return this.http.post('http://localhost:8000/api', data);
   }

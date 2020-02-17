@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Neighbor;
-
+use DB;
 class NeighborsController extends Controller
 {
     /**
@@ -81,5 +81,14 @@ class NeighborsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getNames(){
+        $neighbors = DB::table('pqrs')
+        ->select('neighbors.name')
+        ->join('neighbors','pqrs.neighbor_id','=','neighbors.id')
+        ->groupBy('neighbors.name')
+        ->get();
+        return $neighbors;
     }
 }
