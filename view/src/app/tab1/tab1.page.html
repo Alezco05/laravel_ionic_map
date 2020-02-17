@@ -27,12 +27,17 @@
         ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Tipo de Infraestructura</ion-label>
-        <ion-input
-          placeholder="Digite el tipo de Infraestructura"
-          formControlName="in_type"
-          required
-        ></ion-input>
+        <ion-label position="floating">Tipo de Infraestucutura</ion-label>
+        <ion-select
+          placeholder="Seleccione el Tipo de Infraestucutura"
+          formControlName="infrastructure_id"
+        >
+          <ion-select-option
+            *ngFor="let infraestucture of infraestuctures"
+            [value]="infraestucture.id"
+            >{{infraestucture.name}}</ion-select-option
+          >
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Codigo Infraestructura</ion-label>

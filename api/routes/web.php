@@ -18,4 +18,5 @@ Auth::routes();
 Route::resource('api','PqrController');
 Route::resource('problems','Problem_listController');
 Route::resource('neighbors','NeighborsController');
+Route::resource('infrastructures','InfrastructureController');
 Route::get('neighbors_list','NeighborsController@getNames');

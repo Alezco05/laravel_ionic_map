@@ -13,7 +13,7 @@ export class Tab2Page {
   title = "view";
   pqrs: Pqr[] = [];
   mapa: Mapboxgl.Map;
-  options: string[] = [];
+  options: any[] = [];
   ordenarOption: string;
   marker: Mapboxgl.Marker;
   currentMarkers = [];
@@ -44,26 +44,18 @@ export class Tab2Page {
     });
     // Add zoom and rotation controls to the map.
     this.mapa.addControl(new Mapboxgl.NavigationControl());
-    const geolocate = new Mapboxgl.GeolocateControl();
-    this.mapa.addControl(geolocate);
-    geolocate.on(
-      "geolocate",
-      (e: { coords: { longitude: number; latitude: number } }) => {
-        const lon = e.coords.longitude;
-        const lat = e.coords.latitude;
-        this.crearMarcador(lon, lat);
-      }
-    );
     if (pqrs.length > 0) {
-      pqrs.forEach(pqr => this.crearMarcador(pqr.long, pqr.lat));
+      pqrs.forEach(pqr => this.crearMarcador(pqr.issue, pqr.long, pqr.lat));
     }
   }
-  crearMarcador(lng: number, lat: number) {
+  crearMarcador(text: string, lng: number, lat: number) {
+    const popup = new Mapboxgl.Popup({ offset: 25 }).setText(text);
     this.marker = new Mapboxgl.Marker({
       draggable: true,
       color: "red"
     })
       .setLngLat([lng, lat])
+      .setPopup(popup)
       .addTo(this.mapa);
     this.currentMarkers.push(this.marker);
   }
@@ -77,7 +69,7 @@ export class Tab2Page {
     if (this.pqrs.length > 0) {
       this.pqrs.forEach(pqr => {
         if (pqr.neighbor_id == e) {
-          this.crearMarcador(pqr.long, pqr.lat);
+          this.crearMarcador(pqr.issue, pqr.long, pqr.lat);
         }
       });
     }

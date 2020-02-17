@@ -5,6 +5,7 @@ import {ProblemList} from '../interfaces/problem-list';
 import {Neighbors} from '../interfaces/neighbors';
 // Http
 import {HttpClient} from '@angular/common/http';
+import { Infrastructures } from '../interfaces/infrastructures';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +23,9 @@ export class PqrService {
   }
   getPqrs_neighbor() {
     return this.http.get<Neighbors[]>('http://localhost:8000/neighbors_list');
+  }
+  getInfraestucture(){
+    return this.http.get<Infrastructures[]>('http://localhost:8000/infrastructures');
   }
   createPqr(data: Pqr) {
     return this.http.post('http://localhost:8000/api', data);

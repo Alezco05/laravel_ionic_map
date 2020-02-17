@@ -2,7 +2,7 @@ export interface Pqr {
     'id'?: number;
     'name': string;
     'surname': string;
-    'in_type': string;
+    'infrastructure_id': number;
     'in_code': string;
     'problem_id': number;
     'neighbor_id': string;

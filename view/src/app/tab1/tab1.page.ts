@@ -6,6 +6,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProblemList } from '../interfaces/problem-list';
 import { Neighbors } from '../interfaces/neighbors';
+import { Infrastructures } from '../interfaces/infrastructures';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -15,6 +16,7 @@ export class Tab1Page implements OnInit {
   form: FormGroup;
   problems: ProblemList[] = [];
   neighbors: Neighbors[] = [];
+  infraestuctures: Infrastructures[] = [];
   mapa: Mapboxgl.Map;
   lat =  10.985246;
   long = -74.810913;
@@ -27,6 +29,10 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
     this.pqrService.getProblem_list().subscribe(
       resp => this.problems = resp,
+      err => console.log(err)
+    );
+    this.pqrService.getInfraestucture().subscribe(
+      resp => this.infraestuctures = resp,
       err => console.log(err)
     );
     this.pqrService.getNeighbor_list().subscribe(
@@ -43,7 +49,7 @@ export class Tab1Page implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      in_type: ['', Validators.required],
+      infrastructure_id: ['', Validators.required],
       in_code: ['', Validators.required],
       problem_id: ['', Validators.required],
       neighbor_id: ['', Validators.required],
@@ -63,7 +69,7 @@ export class Tab1Page implements OnInit {
     const data = {
       name: this.form.value.name,
       surname: this.form.value.surname,
-      in_type: this.form.value.in_type,
+      infrastructure_id: this.form.value.infrastructure_id,
       in_code: this.form.value.in_code,
       problem_id: this.form.value.problem_id,
       neighbor_id: this.form.value.neighbor_id,
