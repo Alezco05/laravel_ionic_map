@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { environment } from '../../environments/environment.prod';
-import * as Mapboxgl from 'mapbox-gl';
-import { PqrService } from '../services/pqr.service';
-import { Pqr } from '../interfaces/pqr';
-import { Neighbors } from '../interfaces/neighbors';
+import { Component, OnInit } from "@angular/core";
+import { environment } from "../../environments/environment.prod";
+import * as Mapboxgl from "mapbox-gl";
+import { PqrService } from "../services/pqr.service";
+import { Pqr } from "../interfaces/pqr";
+import { Neighbors } from "../interfaces/neighbors";
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: "app-tab2",
+  templateUrl: "tab2.page.html",
+  styleUrls: ["tab2.page.scss"]
 })
 export class Tab2Page {
-  title = 'view';
+  title = "view";
   pqrs: Pqr[] = [];
   mapa: Mapboxgl.Map;
   options: string[] = [];
@@ -22,8 +22,6 @@ export class Tab2Page {
       this.pqrs = resp;
       this.createMap(this.pqrs);
     });
-  }
-  constructor(private pqrService: PqrService) {
     this.pqrService
       .getPqrs_neighbor()
       .subscribe(resps => this.fillOptions(resps));
@@ -33,13 +31,14 @@ export class Tab2Page {
       this.options.push(resp);
     });
   }
+  constructor(private pqrService: PqrService) {}
 
   // Funciones del MAPA
   createMap(pqrs: Pqr[]) {
     (Mapboxgl as any).accessToken = environment.mapboxKey;
     this.mapa = new Mapboxgl.Map({
-      container: 'mapa', // container id
-      style: 'mapbox://styles/mapbox/outdoors-v11',
+      container: "mapa", // container id
+      style: "mapbox://styles/mapbox/outdoors-v11",
       center: [-74.810913, 10.985246], // LNG, LAT
       zoom: 14 // starting zoom
     });
@@ -48,7 +47,7 @@ export class Tab2Page {
     const geolocate = new Mapboxgl.GeolocateControl();
     this.mapa.addControl(geolocate);
     geolocate.on(
-      'geolocate',
+      "geolocate",
       (e: { coords: { longitude: number; latitude: number } }) => {
         const lon = e.coords.longitude;
         const lat = e.coords.latitude;
@@ -62,7 +61,7 @@ export class Tab2Page {
   crearMarcador(lng: number, lat: number) {
     this.marker = new Mapboxgl.Marker({
       draggable: true,
-      color: 'red'
+      color: "red"
     })
       .setLngLat([lng, lat])
       .addTo(this.mapa);
@@ -77,9 +76,9 @@ export class Tab2Page {
     }
     if (this.pqrs.length > 0) {
       this.pqrs.forEach(pqr => {
-         if(pqr.neighbor_id == e){
+        if (pqr.neighbor_id == e) {
           this.crearMarcador(pqr.long, pqr.lat);
-         }
+        }
       });
     }
   }
