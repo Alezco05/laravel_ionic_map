@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>
       Formulario
@@ -99,4 +99,99 @@
     </ion-list>
     <ion-button expand="full" (click)="click()">Enviar</ion-button>
   </form>
+</ion-content>
+ -->
+
+ 
+<ion-content>
+  <div class="container-login100">
+
+    <div class="wrap-login100">
+
+      <form [formGroup]="form" class="login100-form">
+    
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+          <input formControlName="name" class="mdl-textfield__input" type="text" id="sample3">
+          <label class="mdl-textfield__label" for="sample3">Nombre</label>
+        </div>
+    
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100 bt12">
+          <input formControlName="surname" class="mdl-textfield__input" type="text" id="sample3">
+          <label class="mdl-textfield__label" for="sample3">Apellido</label>
+        </div>
+    
+        <ion-item class="tipo" class="tipo">
+          <ion-label style="color: gray;" position="floating">Tipo de Infraestucutura</ion-label>
+          <ion-select
+            formControlName="infrastructure_id"
+          >
+            <ion-select-option
+              *ngFor="let infraestucture of infraestuctures"
+              [value]="infraestucture.id"
+              >{{infraestucture.name}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+    
+    
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100 bt12">
+          <input formControlName="in_code" class="mdl-textfield__input" type="text" id="sample3">
+          <label class="mdl-textfield__label" for="sample3">Codigo Infraestructura</label>
+        </div>
+    
+        <ion-item class="tipo" style="margin-bottom: 5px;">
+          <ion-label style="color: gray;" position="floating">Tipo de problema</ion-label>
+          <ion-select
+            interface="action-sheet"
+            formControlName="problem_id"
+          >
+            <ion-select-option
+              *ngFor="let problem of problems"
+              [value]="problem.id"
+              >{{problem.problem}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+    
+        <ion-item class="tipo">
+          <ion-label style="color: gray;" position="floating">Barrios</ion-label>
+          <ion-select
+          
+            formControlName="neighbor_id"
+          >
+            <ion-select-option
+              *ngFor="let neighbor of neighbors"
+              [value]="neighbor.id"
+              >{{neighbor.name}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+    
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+          <input formControlName="address" class="mdl-textfield__input" type="text" id="sample3">
+          <label class="mdl-textfield__label" for="sample3">Dirrecion</label>
+        </div>
+    
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+          <input  formControlName="issue" class="mdl-textfield__input" type="text" id="sample3">
+          <label class="mdl-textfield__label" for="sample3">Coloca Mas Informacion Aqui</label>
+        </div>
+    
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label w-100">
+          <input formControlName="phone"  class="mdl-textfield__input" type="number" id="sample3">
+          <label class="mdl-textfield__label" for="sample3">Telefono</label>
+          <span class="mdl-textfield__error">Numero invalido</span>
+        </div>
+    
+        
+        <div id="mapa2"></div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored btn" (click)="click()" [disabled]=!form.valid>
+          Enviar
+        </button>
+      </form>
+      
+    </div>
+
+  </div>
+  
 </ion-content>
