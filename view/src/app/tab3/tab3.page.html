@@ -7,11 +7,41 @@
 </ion-header>
 
 <ion-content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div class="container">
+    <h1>Listado Posts</h1>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="filterPost"
+            placeholder="Ej. Barrio: Villa Santos"
+            [(ngModel)]="filterPost"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Barrio</th>
+              <th>Tipo de Infraestructura</th>
+              <th>Tipo de Problema</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pqr of HEROES | filter: filterPost">
+              <td>{{ pqr.id }}</td>
+              <td>{{ pqr.id }}</td>
+              <td>{{ pqr.id}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
 </ion-content>
