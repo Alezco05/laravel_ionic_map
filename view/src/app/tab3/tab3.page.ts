@@ -8,14 +8,8 @@ import { PqrService } from '../services/pqr.service';
 })
 export class Tab3Page {
   pqrs: any[] = [];
-  HEROES = [
-  {id: 1, name:'Superman'},
-  {id: 2, name:'Batman'},
-  {id: 5, name:'BatGirl'},
-  {id: 3, name:'Robin'},
-  {id: 4, name:'Flash'}
-];
+  filterPost = '';
   constructor(private pqrService: PqrService) {
-    // this.pqrService.getPqrs_neighbor().subscribe(resp => (this.pqrs = resp));
+     this.pqrService.getPqrs_neighbor().subscribe(resp => this.pqrs = resp);
   }
 }

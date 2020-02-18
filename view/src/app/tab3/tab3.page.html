@@ -1,14 +1,6 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <div class="container">
-    <h1>Listado Posts</h1>
+    <h1>Listado</h1>
     <div class="row">
       <div class="col">
         <div class="form-group">
@@ -28,15 +20,15 @@
           <thead>
             <tr>
               <th>Barrio</th>
-              <th>Tipo de Infraestructura</th>
-              <th>Tipo de Problema</th>
+              <th>Infraestructura</th>
+              <th>Problema</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let pqr of HEROES | filter: filterPost">
-              <td>{{ pqr.id }}</td>
-              <td>{{ pqr.id }}</td>
-              <td>{{ pqr.id}}</td>
+            <tr *ngFor="let pqr of pqrs | filter: filterPost">
+              <td>{{ pqr.neighbor }}</td>
+              <td>{{ pqr.infrastructure }}</td>
+              <td>{{ pqr.problem}}</td>
             </tr>
           </tbody>
         </table>
