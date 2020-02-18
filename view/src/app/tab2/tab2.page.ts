@@ -4,6 +4,7 @@ import * as Mapboxgl from "mapbox-gl";
 import { PqrService } from "../services/pqr.service";
 import { Pqr } from "../interfaces/pqr";
 import { Neighbors } from "../interfaces/neighbors";
+import { NgForm } from '@angular/forms';
 @Component({
   selector: "app-tab2",
   templateUrl: "tab2.page.html",
@@ -20,20 +21,28 @@ export class Tab2Page {
   marker: Mapboxgl.Marker;
   currentMarkers = [];
   ionViewDidEnter() {
+    if (this.currentMarkers !== null) {
+      for (let i = this.currentMarkers.length - 1; i >= 0; i--) {
+        this.currentMarkers[i].remove();
+      }
+    }
     this.pqrService.getPqrs().subscribe(resp => {
       this.pqrs = resp;
       this.createMap(this.pqrs);
     });
-    this.pqrService
-      .getPqrs_neighbor()
-      .subscribe(resps => this.fillOptions(resps));
+ 
   }
+
   fillOptions(resps) {
     resps.forEach(resp => {
       this.options.push(resp);
     });
   }
-  constructor(private pqrService: PqrService) {}
+  constructor(private pqrService: PqrService) {
+    this.pqrService
+    .getPqrs_neighbor()
+    .subscribe(resps => this.fillOptions(resps));
+  }
 
   // Funciones del MAPA
   createMap(pqrs: Pqr[]) {
@@ -76,28 +85,22 @@ export class Tab2Page {
       });
     }
   }
-  click(e){
-    if(this.barrio === 0 || this.infraestructura === 0 || this.problema === 0){
-      alert('Formulario Invalido');
-      return;
-    }
+  click(f: NgForm){
+    this.barrio = f.value.barrio;
+    this.infraestructura = f.value.infraestructura;
+    this.problema = f.value.problema;
     if (this.currentMarkers !== null) {
       for (let i = this.currentMarkers.length - 1; i >= 0; i--) {
         this.currentMarkers[i].remove();
       }
     }
-    console.log("Barrio",this.barrio)
-    
-    console.log("Infra",this.infraestructura)
-    
-    console.log("Problem",this.problema)
     if (this.pqrs.length > 0) {
       this.pqrs.forEach(pqr => {
-        console.log(pqr);
         if (pqr.neighbor_id == this.barrio && pqr.infrastructure_id == this.infraestructura && pqr.problem_id == this.problema) {
           this.crearMarcador(pqr.issue, pqr.long, pqr.lat);
         }
       });
     }
+    f.reset();
   }
 }

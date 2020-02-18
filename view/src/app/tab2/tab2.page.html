@@ -1,5 +1,5 @@
 <ion-content>
-  <form  (ngSubmit)="click($event)">
+  <form  (ngSubmit)="click(f)" #f="ngForm">
     <div id="formulario">
       <div>
         <ion-item>
@@ -7,7 +7,8 @@
           <ion-select
             placeholder="Seleccione el Barrio"
             name="barrio"
-            [(ngModel)]="barrio"
+            ngModel
+            required
           >
             <ion-select-option
               *ngFor="let option of options"
@@ -23,7 +24,8 @@
           <ion-select
             placeholder="Seleccione Infraestructura"
             name="infraestructura"
-            [(ngModel)]="infraestructura"
+            ngModel
+            required
           >
             <ion-select-option
               *ngFor="let option of options"
@@ -39,7 +41,8 @@
           <ion-select
             placeholder="Seleccione el Problema"
             name="problema"
-            [(ngModel)]="problema"
+            ngModel
+            required
           >
             <ion-select-option
               *ngFor="let option of options"
@@ -49,7 +52,7 @@
           </ion-select>
         </ion-item>
       </div>
-      <div class="box"><ion-button type="submit">Enviar</ion-button></div>
+      <div class="box"><ion-button type="submit" [disabled]="!f.valid">Enviar</ion-button></div>
     </div>
   </form>
   <div id="mapa"></div>
