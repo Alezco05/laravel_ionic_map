@@ -4,8 +4,10 @@ import {Pqr} from '../interfaces/pqr';
 import {ProblemList} from '../interfaces/problem-list';
 import {Neighbors} from '../interfaces/neighbors';
 // Http
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Infrastructures } from '../interfaces/infrastructures';
+import * as FileSaver from 'file-saver';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,9 +28,6 @@ export class PqrService {
   }
   getInfraestucture(){
     return this.http.get<Infrastructures[]>('http://localhost:8000/infrastructures');
-  }
-  getExcel(){
-    return this.http.get('http://localhost:8000/get_excel');
   }
   createPqr(data: Pqr) {
     return this.http.post('http://localhost:8000/api', data);

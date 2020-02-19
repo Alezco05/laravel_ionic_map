@@ -13,21 +13,20 @@ class PqrsExport implements FromCollection, WithHeadings
     public function collection()
     {
         return DB::TABLE('pqrs')
-        ->SELECT('*')
+        ->SELECT('pqrs.address','neighbors.name AS neighbor', 'problem_lists.problem AS problem', 'infrastructures.name AS infrastructure', 'pqrs.issue')
         ->JOIN('neighbors','pqrs.neighbor_id','=','neighbors.id')
         ->JOIN('problem_lists','pqrs.problem_id','=','problem_lists.id')       
-        // ->JOIN('infrastructures','pqrs.infrastructure_id','=','infrastructures.id')
-        ->get();;
+        ->JOIN('infrastructures','pqrs.infrastructure_id','=','infrastructures.id')
+        ->get();
     }
     public function headings(): array
     {
         return [
-            'Code',
-            'Description',
-            'Pos',
-            'Mod A',
-            'Mod B',
-            'Charge',
+            'Dirección',
+            'Barrio',
+            'Tipo de Problema',
+            'Tipo de Infraestructura',
+            'Descripcion'
         ];
     }
 }
