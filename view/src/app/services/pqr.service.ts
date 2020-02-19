@@ -27,6 +27,9 @@ export class PqrService {
   getInfraestucture(){
     return this.http.get<Infrastructures[]>('http://localhost:8000/infrastructures');
   }
+  getExcel(){
+    return this.http.get('http://localhost:8000/get_excel');
+  }
   createPqr(data: Pqr) {
     return this.http.post('http://localhost:8000/api', data);
   }

@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Exports\PqrsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,3 +22,7 @@ Route::resource('problems','Problem_listController');
 Route::resource('neighbors','NeighborsController');
 Route::resource('infrastructures','InfrastructureController');
 Route::get('neighbors_list','NeighborsController@getNames');
+// Route::get('get_excel','ExcelController@generarExcel');
+Route::get('/excel', function () {
+    return Excel::download(new PqrsExport, 'products.xlsx');
+});
