@@ -101,6 +101,6 @@ export class Tab2Page {
         }
       });
     }
-    f.reset();
+    f.resetForm();
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PqrService } from '../services/pqr.service';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import * as FileSaver from 'file-saver';
 @Component({
   selector: 'app-tab3',
