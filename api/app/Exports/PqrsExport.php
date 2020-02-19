@@ -4,8 +4,11 @@ namespace App\Exports;
 use DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Concerns\WithEvents;
 
-class PqrsExport implements FromCollection, WithHeadings
+class PqrsExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -28,5 +31,34 @@ class PqrsExport implements FromCollection, WithHeadings
             'Tipo de Infraestructura',
             'Descripcion'
         ];
+    }
+     /**
+     * @return array
+     */
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class    => function(AfterSheet $event) {
+                $cellRange = 'A1:E1'; // All headers
+                $styleArray = [
+                    'font' => [
+                        'name'      =>  'Calibri',
+                        'size'      =>  16,
+                        'bold'      =>  true,
+                        'color' => ['argb' => '0E0F0E'],
+                    ],
+                      //Set background style
+                      'fill' => [
+                        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                        'startColor' => [
+                            'rgb' => '367fa9',
+                         ]           
+                    ],
+                ];
+                
+                $event->sheet->getDelegate()->getStyle($cellRange)->applyFromArray($styleArray);
+            },
+        ];
+        
     }
 }
